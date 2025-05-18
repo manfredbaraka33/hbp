@@ -1,0 +1,59 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+import { postData } from '../helpers/axios';
+
+const SmartQuery = () => {
+  const [question, setQuestion] = useState("");
+  const [result, setResult] = useState("");
+  const [loading, setLoading] = useState(false);
+
+
+  const askQuestion = async () => {
+    try {
+        setLoading(true);
+      const response = await postData("genai-query/", { question });
+      console.log("Here is the resp",response);
+      setResult(response.result);
+    } catch (error) {
+      setResult("Something went wrong");
+    }finally{
+        setLoading(false);
+    }
+  };
+
+  return (
+    <div className="p-4 max-w-xl mx-auto">
+      <h2 className="text-xl mb-2 font-bold">Ask Smart Health Query</h2>
+      <div className="row my-3">
+        <center>
+        <div className="col-8">
+        <textarea
+        type="text"
+        value={question}
+        onChange={(e) => setQuestion(e.target.value)}
+        className="form-control"
+        placeholder="e.g., How many male patients are not vaccinated?"
+      />
+        </div>
+        </center>
+      </div>
+      
+      <button type="submit" className="btn btn-secondary" onClick={askQuestion} disabled={loading}>
+            {loading ? <div className="mt-3 text-center">
+                <div className="spinner-grow text-light" role="status"></div>
+                <div className="spinner-grow text-danger" role="status"></div>
+                <div className="spinner-grow text-success" role="status"></div>
+                <div className="spinner-grow text-info" role="status"></div>
+                <p>Creating magic ...</p>
+            </div> : "Ask"}
+          </button>
+        {result && <div className="mt-4 p-4">
+        {/* <h4>Answer:</h4> */}
+        <p style={{direction:"ltr"}}>{result}</p>
+
+      </div>}
+    </div>
+  );
+};
+
+export default SmartQuery;
