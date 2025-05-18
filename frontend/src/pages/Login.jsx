@@ -19,10 +19,10 @@ const Login = () => {
     setError(null);
     setLoading(true); // Start loading
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/token/", { username, password });
+      const response = await axios.post("https://hbpbackend.linkpc.net/api/token/", { username, password });
       const { access, refresh } = response.data;
 
-      const userDetailsResponse = await axios.get("http://127.0.0.1:8000/api/user/details/", {
+      const userDetailsResponse = await axios.get("https://hbpbackend.linkpc.net/api/user/details/", {
         headers: { Authorization: `Bearer ${access}` },
       });
       console.log(userDetailsResponse);
