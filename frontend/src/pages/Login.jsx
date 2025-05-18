@@ -20,6 +20,7 @@ const Login = () => {
     setLoading(true); // Start loading
     try {
       const response = await axios.post("https://hbpbackend.linkpc.net/api/token/", { username, password });
+       console.log(response);
       const { access, refresh } = response.data;
 
       const userDetailsResponse = await axios.get("https://hbpbackend.linkpc.net/api/user/details/", {
