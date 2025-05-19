@@ -5,7 +5,7 @@ const NotificationSocket = () => {
     
     useEffect(() => { 
         // Create WebSocket connection 
-        const socket = new WebSocket('ws://hbpbackend.linkpc.net/ws/notifications/'); 
+        const socket = new WebSocket('wss://hbpbackend.linkpc.net/ws/notifications/'); 
 
         socket.onmessage = (event) =>{
             const data = JSON.parse(event.data);
