@@ -47,9 +47,11 @@ setDisplayedText(""); // clear previous output
       <h2 className="text-xl mb-2 font-bold">Ask Smart Health Query</h2>
       <div className="row my-3">
         <center>
-        <div className="col-8 p-4">
+        <div className="col-10 p-4">
         <textarea
         type="text"
+          rows="8"
+          
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
         className="form-control"
