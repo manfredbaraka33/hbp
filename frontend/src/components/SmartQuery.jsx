@@ -37,7 +37,7 @@ setDisplayedText(""); // clear previous output
         <div className="col-10 p-4">
         <textarea
         type="text"
-          rows="8"
+          rows="5"
           
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
