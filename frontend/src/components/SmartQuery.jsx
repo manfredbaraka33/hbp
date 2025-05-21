@@ -26,7 +26,7 @@ const SmartQuery = () => {
       <h2 className="text-xl mb-2 font-bold">Ask Smart Health Query</h2>
       <div className="row my-3">
         <center>
-        <div className="col-8">
+        <div className="col-8 p-4">
         <textarea
         type="text"
         value={question}
@@ -40,11 +40,11 @@ const SmartQuery = () => {
       
       <button type="submit" className="btn btn-secondary" onClick={askQuestion} disabled={loading}>
             {loading ? <div className="mt-3 text-center">
-                <div className="spinner-grow text-light" role="status"></div>
-                <div className="spinner-grow text-danger" role="status"></div>
+                <div className="spinner-grow text-parimary" role="status"></div>
+                <div className="spinner-grow text-warning" role="status"></div>
+                <div className="spinner-grow text-dark" role="status"></div>
                 <div className="spinner-grow text-success" role="status"></div>
-                <div className="spinner-grow text-info" role="status"></div>
-                <p>Creating magic ...</p>
+               
             </div> : "Ask"}
           </button>
         {result && <div className="mt-4 p-4">
