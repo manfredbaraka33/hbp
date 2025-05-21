@@ -6,8 +6,7 @@ const SmartQuery = () => {
   const [question, setQuestion] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
-  const [fullText, setFullText] = useState("");
-  const [displayedText, setDisplayedText] = useState("");
+  
 
 
 
@@ -27,19 +26,7 @@ setDisplayedText(""); // clear previous output
     }
   };
 
-  useEffect(() => {
-  let index = 0;
-  const interval = setInterval(() => {
-    if (index < fullText.length) {
-      setDisplayedText(prev => prev + fullText[index]);
-      index++;
-    } else {
-      clearInterval(interval);
-    }
-  }, 30); // typing speed in ms
-
-  return () => clearInterval(interval);
-}, [fullText]);
+ 
 
 
   return (
@@ -75,11 +62,7 @@ setDisplayedText(""); // clear previous output
         <p style={{direction:"ltr"}}>{result}</p>
 
       </div>}
-      <div>
-        {fullText && <div>
-          {fullText}
-        </div>}
-      </div>
+      
     </div>
   );
 };
