@@ -6,6 +6,9 @@ const SmartQuery = () => {
   const [question, setQuestion] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
+  const [fullText, setFullText] = useState("");
+  const [displayedText, setDisplayedText] = useState("");
+
 
 
   const askQuestion = async () => {
@@ -14,12 +17,30 @@ const SmartQuery = () => {
       const response = await postData("genai-query/", { question });
       console.log("Here is the resp",response);
       setResult(response.result);
+      setFullText(response.result); // this triggers the animation
+setDisplayedText(""); // clear previous output
+
     } catch (error) {
       setResult("Something went wrong");
     }finally{
         setLoading(false);
     }
   };
+
+  useEffect(() => {
+  let index = 0;
+  const interval = setInterval(() => {
+    if (index < fullText.length) {
+      setDisplayedText(prev => prev + fullText[index]);
+      index++;
+    } else {
+      clearInterval(interval);
+    }
+  }, 30); // typing speed in ms
+
+  return () => clearInterval(interval);
+}, [fullText]);
+
 
   return (
     <div className="p-4 max-w-xl mx-auto">
@@ -52,6 +73,11 @@ const SmartQuery = () => {
         <p style={{direction:"ltr"}}>{result}</p>
 
       </div>}
+      <div>
+        {fullText && <div>
+          {fullText}
+        </div>}
+      </div>
     </div>
   );
 };
