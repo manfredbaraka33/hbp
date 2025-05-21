@@ -5,7 +5,7 @@ import ReportGen from '../components/ReportGen'
 
 const Report = () => {
   return (
-    <div style={{height:"700px"}} className='mt-5 conatiner bg-dark text-light'>
+    <div style={{height:"1200px"}} className='mt-5 conatiner bg-dark text-light'>
         <Navbar />
         <br />
          <br />   
